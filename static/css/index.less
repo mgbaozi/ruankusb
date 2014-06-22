@@ -1,0 +1,405 @@
+﻿@import "common";
+
+body
+{
+	min-width: 1000px;
+	background: #FFF;
+	.user-select (none);
+
+	.wrap
+	{
+		min-width: 1000px;
+		min-height: 560px;
+		overflow-y: hidden;
+
+		.header
+		{
+			.header-wrap
+			{
+				height: 50px;
+				width: 950px;
+				margin: 0 auto;
+				padding: 15px;
+
+				.logo
+				{
+					display: none;
+					width: 140px;
+					height: 50px;
+					margin: 0 30px;
+					background: url(../img/logo.png) no-repeat;
+				}
+			}
+		}
+
+		.banner
+		{
+			height: 300px;
+			margin: 100px 0;
+			background: #373737;
+
+			.center
+			{
+				position: relative;
+				width: 950px;
+				margin: 0 auto;
+
+				.lyrics
+				{
+					position: absolute;
+					z-index: 200;
+					right: 105px;
+					top: -200px;
+					height: 9999px;
+					width: 350px;
+					.box-shadow (0 0 6px rgba(0, 0, 0, 1.0));
+					background: #FFF;
+					overflow: hidden;
+					cursor: default;
+
+					&.selecting
+					{
+						cursor: ns-resize;
+					}
+
+					.lyrics-wrap
+					{
+						position: relative;
+
+						.lyrics-slide
+						{
+							position: absolute;
+							left: 0;
+							top: 0px;
+							width: 100%;
+							.transition (top 0.6s);
+
+							.lyrics-slide-wrap
+							{
+								position: relative;
+
+								ul.notice
+								{
+									position: relative;
+									height: 100px;
+
+									li
+									{
+										position: absolute;
+										top: 0;
+										width: 100%;
+										text-align: center;
+										opacity: 1;
+										.transition (opacity 0.4s);
+
+										&.hidden
+										{
+											opacity: 0;
+										}
+
+										h3
+										{
+											color: #BBB;
+											font-size: 23px;
+											font-weight: normal;
+											line-height: 70px;
+											letter-spacing: 2px;
+										}
+
+										p
+										{
+											color: #BBB;
+											font-size: 15px;
+										}
+
+										a
+										{
+											color: #9FDDAC;
+										}
+									}
+								}
+
+								ul.lyric-list
+								{
+									position: relative;
+									z-index: 500;
+
+									li
+									{
+										padding: 0 15px;
+										color: #666;
+										font-size: 15px;
+										line-height: 24px;
+										text-align: center;
+										.transition (color 0.4s);
+
+										&.blank
+										{
+											height: 24px;
+										}
+
+										&.highlight
+										{
+											color: #1D9969;
+										}
+									}
+								}
+
+								.select-area
+								{
+									position: absolute;
+									z-index: 300;
+									left: 0;
+									bottom: 0px;
+									width: 100%;
+									background: #C2ECD1;
+									opacity: 1;
+									.transition (opacity 0.4s);
+
+									&.scroll
+									{
+										.transition (top 0.25s, bottom 0.25s, opacity 0.4s;);
+									}
+
+									&.hidden
+									{
+										opacity: 0;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				.main
+				{
+					position: absolute;
+					left: 50px;
+					top: -100px;
+					height: 445px;
+					width: 445px;
+					overflow: hidden;
+
+					.main-wrap
+					{
+						position: relative;
+
+						.song-info
+						{
+							padding: 10px;
+
+							.image
+							{
+								position: relative;
+								float: left;
+								margin-right: 30px;
+								.border-radius (9999px);
+								.box-shadow (1px 1px 4px rgba(0, 0, 0, 0.8));
+								background-color: #FFF;
+								background-size: 100% 100%;
+								overflow: hidden;
+
+								.download
+								{
+									position: absolute;
+									left: 0;
+									top: 0;
+									width: 100%;
+									height: 100%;
+									.border-radius (9999px);
+									background: #000;
+									opacity: 0;
+									.transition (opacity 0.2s);
+
+									&:hover
+									{
+										opacity: 0.5;
+									}
+								}
+
+								.image-wrap
+								{
+									.border-radius (9999px);
+									opacity: 1;
+									.transition (opacity 2s);
+
+									&.hidden
+									{
+										opacity: 0;
+									}
+
+									img
+									{
+										display: block;
+										width: 150px;
+										height: 150px;
+										background: rgba(255, 255, 255, 0.5);
+									}
+								}
+							}
+
+							*
+							{
+								white-space: nowrap;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+
+							h1.title
+							{
+								margin: 35px 0;
+								color: #444;
+								font-size: 32px;
+								font-weight: normal;
+								.text-shadow (1px 1px 1px rgba(0, 0, 0, 0.2));
+								.user-select (text);
+
+								a
+								{
+									.transition (color 0.35s);
+
+									&:hover
+									{
+										color: #292929;
+									}
+								}
+							}
+
+							p
+							{
+								margin: 5px 0;
+								color: #EEE;
+								.user-select (text);
+
+								a
+								{
+									.transition (color 0.35s);
+									
+									&:hover
+									{
+										color: #C2ECD1;
+									}
+								}
+
+								.artist
+								{
+									margin: 0 5px;
+									font-size: 17px;
+								}
+
+								.album
+								{
+									font-size: 13px;
+								}
+
+								.year
+								{
+									margin: 0 5px;
+									font-size: 13px;
+								}
+							}
+
+							h1.title, p
+							{
+								opacity: 1;
+								.transition (opacity 0.35s);
+							}
+
+							&.hidden
+							{
+								h1.title, p
+								{
+									opacity: 0;
+								}
+							}
+						}
+
+						.share
+						{
+							position: absolute;
+							left: 130px;
+							top: 270px;
+							z-index: 100;
+							width: 400px;
+							padding: 10px 30px;
+							.border-radius (999px);
+							.box-shadow (0 0 6px rgba(0, 0, 0, 0.2));
+							background: #FFF;
+							.transition (left 0.8s);
+
+							&.hidden
+							{
+								left: 450px;
+							}
+
+							h3
+							{
+								color: #777;
+								font-size: 17px;
+								font-weight: normal;
+							}
+
+							p
+							{
+								margin-top: 5px;
+
+								a
+								{
+									margin: 0 5px;
+									font-family: "doubanlrc-icons", sans-serif;
+									font-size: 24px;
+									.transition (color 0.15s);
+								}
+
+								.share-weibo
+								{
+									color: #EC9191;
+
+									&:hover
+									{
+										color: #E76F6F;
+									}
+								}
+
+								.share-renren
+								{
+									color: #90AEDB;
+
+									&:hover
+									{
+										color: #5F90DA;
+									}
+								}
+
+								.share-douban
+								{
+									color: #9ADDAF;
+
+									&:hover
+									{
+										color: #7FCC97;
+									}
+								}
+
+								.share-clipboard
+								{
+									color: #C7C7C7;
+
+									&:hover
+									{
+										color: #ACACAC;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	iframe.hidden
+	{
+		display: none;
+	}
+}

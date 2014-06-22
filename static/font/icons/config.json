@@ -1,0 +1,60 @@
+{
+  "name": "doubanlrc-icons",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "53350cad829e9471802e1697ea583691",
+      "css": "douban",
+      "code": 59394,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M668.9 495.1H303.7V312.5H668.9V495.1ZM836.9 66.4C859 66.4 877.9 74.1 893.6 89.4S917 123.7 917 146.5V843.8C917 865.9 909.2 884.8 893.6 900.4S859 923.8 836.9 923.8H138.7C116.5 923.8 97.8 916 82.5 900.4S59.6 865.9 59.6 843.8V146.5C59.6 123.7 67.2 104.7 82.5 89.4S116.5 66.4 138.7 66.4H836.9ZM178.7 188.5H796.9V127.9H178.7V188.5ZM242.2 251V554.7H730.5V251H242.2ZM817.4 738.3H649.4L709 631.8 641.6 581.1C638.3 588.9 635.4 596.4 632.8 603.5S627.1 618.2 623.5 626 616.2 641.3 612.3 648.4C601.2 667.3 591.1 685.7 582 703.6S566.7 733.1 563.5 738.3H412.1C409.5 733.1 403.6 721.5 394.5 703.6S375.3 667.3 364.3 648.4C359.7 641.3 355.8 633.8 352.5 626S346.4 610.7 343.8 603.5 338.2 588.9 335 581.1L267.6 631.8 327.1 738.3H159.2V800.8H817.4V738.3Z",
+        "width": 977
+      },
+      "search": [
+        "iconfont-douban"
+      ]
+    },
+    {
+      "uid": "4743b088aa95d6f3b6b990e770d3b647",
+      "css": "facebook",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f0cf7db1b03cb65adc450aa3bdaf8c4d",
+      "css": "gplus",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "cfa8a2588cab42a6ff7ba81eb4fec21b",
+      "css": "renren",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "627abcdb627cb1789e009c08e2678ef9",
+      "css": "twitter",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9854b94688e31450fc76aae4c2a45dff",
+      "css": "weibo",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1a27e6346cdf0480c9c22351378bebbb",
+      "css": "clipboard",
+      "code": 59398,
+      "src": "typicons"
+    }
+  ]
+}

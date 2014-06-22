@@ -1,1 +1,68 @@
-hello world
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/index.css" rel="stylesheet" type="text/css" />
+	<script src="js/ajax.js" type="text/javascript"></script>
+	<script src="js/lyrics-box.js" type="text/javascript"></script>
+	<script src="js/index.js" type="text/javascript"></script>
+	<title>豆瓣LRC</title>
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="header">
+			<div class="header-wrap">
+				<div class="logo"></div>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="center">
+				<div class="main">
+					<div class="main-wrap">
+						<div class="song-info hidden" id="song-info">
+							<div class="image" id="image-backgroud">
+								<div class="image-wrap hidden" id="image-wrap"><img id="image" src=""></div>
+								<div class="download"></div>
+							</div>
+							<h1 class="title"><a id="title" href="#" target="_blank">&zwnj;</a></h1>
+							<p><span class="artist"><a id="artist" href="#" target="_blank">&zwnj;</a></span></p>
+							<p><span class="album">＜<a id="album" href="#" target="_blank">&zwnj;</a>＞</span><span class="year" id="year">&zwnj;</span></p>
+						</div>
+						<div class="share hidden" id="share">
+							<h3>分享歌词：</h3>
+							<p><!--
+								--><a class="share-weibo" id="share-weibo" href="#" title="分享到新浪微博">&#xE800;</a><!--
+								--><a class="share-renren" id="share-renren" href="#" title="分享到人人网">&#xE801;</a><!--
+								--><a class="share-douban" id="share-douban" href="#" title="分享到豆瓣">&#xE802;</a><!--
+								--><a class="share-clipboard" id="share-clipboard" href="#" title="复制到剪贴板">&#xE806;</a><!--
+							--></p>
+						</div>
+					</div>
+				</div>
+				<div class="lyrics" id="lyrics">
+					<div class="lyrics-wrap">
+						<div class="lyrics-slide" id="lyrics-slide">
+							<div class="lyrics-slide-wrap">
+								<ul class="notice">
+									<li id="initializing">
+										<h3>正在获取电台信息</h3>
+										<p>若未打开电台请先<a href="http://douban.fm/" title="打开豆瓣FM" target="_blank">打开电台</a></p>
+									</li>
+									<li class="hidden" id="lyrics-not-found">
+										<h3>未找到对应的歌词</h3>
+									</li>
+								</ul>
+								<ul class="lyric-list" id="lyric-list">
+								</ul>
+								<div class="select-area hidden" id="select-area"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<iframe class="hidden" src="http://douban.fm/misc/bubbler_client#<%= domainName %>" width="0" height="0" frameborder="0"></iframe>
+</body>
+</html>

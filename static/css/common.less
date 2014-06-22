@@ -1,0 +1,428 @@
+﻿.clearfix ()
+{
+	&:after
+	{
+		content: "";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden
+	}
+}
+
+.display-flex ()
+{
+	display: -webkit-box;
+	display: -moz-box;
+
+	display: -ms-flexbox;
+	
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+}
+
+.display-inline-flex ()
+{
+	display: -webkit-inline-box;
+	display: -moz-inline-box;
+
+	display: -ms-inline-flexbox;
+
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: inline-flex;
+}
+
+.flex-direction (@flex-direction: row)
+{
+	.box-orient (@box-orient)
+	{
+		-webkit-box-orient: @box-orient;
+		-moz-box-orient: @box-orient;
+	}
+	.box-direction (@box-direction)
+	{
+		-webkit-box-direction: @box-direction;
+		-moz-box-direction: @box-direction;
+	}
+
+	.flex-direction- (row)
+	{
+		.box-orient (horizontal);
+		.box-direction (normal);
+	}
+	.flex-direction- (column)
+	{
+		.box-orient (vertical);
+		.box-direction (normal);
+	}
+	.flex-direction- (row-reverse)
+	{
+		.box-orient (horizontal);
+		.box-direction (reverse);
+	}
+	.flex-direction- (column-reverse)
+	{
+		.box-orient (vertical);
+		.box-direction (reverse);
+	}
+
+	.flex-direction- (@flex-direction);
+
+	-webkit-flex-direction: @flex-direction;
+	-moz-flex-direction: @flex-direction;
+	-ms-flex-direction: @flex-direction;
+	flex-direction: @flex-direction;
+}
+
+.flex-wrap (@flex-wrap: nowrap)
+{
+	.box-lines (@box-lines)
+	{
+		-webkit-box-lines: @box-lines;
+		-moz-box-lines: @box-lines;
+	}
+
+	.flex-wrap- (nowrap)
+	{
+		.box-lines (single);
+	}
+	.flex-wrap- (wrap)
+	{
+		.box-lines (multiple);
+	}
+
+	.flex-wrap- (@flex-wrap);
+
+	-webkit-flex-wrap: @flex-wrap;
+	-moz-flex-wrap: @flex-wrap;
+	-ms-flex-wrap: @flex-wrap;
+	flex-wrap: @flex-wrap;
+}
+
+.flex-flow (@flex-direction: row, @flex-wrap: nowrap)
+{
+	.flex-direction (@flex-direction);
+	.flex-wrap (@flex-wrap);
+
+	-webkit-flex-flow: @flex-direction @flex-wrap;
+	-moz-flex-flow: @flex-direction @flex-wrap;
+	-ms-flex-flow: @flex-direction @flex-wrap;
+	flex-flow: @flex-direction @flex-wrap;
+}
+
+.justify-content (@justify-content: flex-start)
+{
+	.box-pack (@box-pack)
+	{
+		-webkit-box-pack: @box-pack;
+		-moz-box-pack: @box-pack;
+	}
+
+	.flex-pack (@flex-pack)
+	{
+		-ms-flex-pack: @flex-pack;
+	}
+
+	.justify-content- (flex-start)
+	{
+		.box-pack (start);
+		.flex-pack (start);
+	}
+	.justify-content- (flex-end)
+	{
+		.box-pack (end);
+		.flex-pack (end);
+	}
+	.justify-content- (space-between)
+	{
+		.box-pack (justify);
+		.flex-pack (justify);
+	}
+	.justify-content- (space-around)
+	{
+		.box-pack (justify);
+		.flex-pack (distribute);
+	}
+	.justify-content- (@justify-content)
+	{
+		.box-pack (@justify-content);
+		.flex-pack (@justify-content);
+	}
+
+	.justify-content- (@justify-content);
+
+	-webkit-justify-content: @justify-content;
+	-moz-justify-content: @justify-content;
+	-ms-justify-content: @justify-content;
+	justify-content: @justify-content;
+}
+
+.align-items (@align-items: stretch)
+{
+	.box-align (@box-align)
+	{
+		-webkit-box-align: @box-align;
+		-moz-box-align: @box-align;
+	}
+
+	.flex-align (@flex-align)
+	{
+		-ms-flex-align: @flex-align;
+	}
+	
+	.align-items- (flex-start)
+	{
+		.box-align (start);
+		.flex-align (start);
+	}
+	.align-items- (flex-end)
+	{
+		.box-align (end);
+		.flex-align (end);
+	}
+	.align-items- (@align-items)
+	{
+		.box-align (@align-items);
+		.flex-align (@align-items);
+	}
+
+	.align-items- (@align-items);
+
+	-webkit-align-items: @align-items;
+	-moz-align-items: @align-items;
+	-ms-align-items: @align-items;
+	align-items: @align-items;
+}
+
+.align-content (@align-content: stretch)
+{
+	.flex-line-pack (@flex-line-pack)
+	{
+		-ms-flex-line-pack: @flex-line-pack;
+	}
+	
+	.align-content- (flex-start)
+	{
+		.flex-item-align (start);
+	}
+	.align-content- (flex-end)
+	{
+		.flex-item-align (end);
+	}
+	.align-content- (@align-content)
+	{
+		.flex-item-align (@align-content);
+	}
+
+	.align-content- (@align-content);
+
+	-webkit-align-content: @align-content;
+	-moz-align-content: @align-content;
+	-ms-align-content: @align-content;
+	align-content: @align-content;
+}
+
+.flex-grow (@flex-grow: 0)
+{
+	-webkit-box-flex: @flex-grow;
+	-moz-box-flex: @flex-grow;
+
+	-ms-flex: @flex-grow 1 auto;
+
+	-webkit-flex-grow: @flex-grow;
+	-moz-flex-grow: @flex-grow;
+	flex-grow: @flex-grow;
+}
+
+.flex-shrink (@flex-shrink: 1)
+{
+	-webkit-box-flex: @flex-shrink;
+	-moz-box-flex: @flex-shrink;
+
+	-ms-flex: 0 @flex-shrink auto;
+
+	-webkit-flex-shrink: @flex-shrink;
+	-moz-flex-shrink: @flex-shrink;
+	flex-shrink: @flex-shrink;
+}
+
+.flex-basis (@flex-basis: auto)
+{
+	-ms-flex: 0 1 @flex-basis;
+
+	-webkit-flex-basis: @flex-basis;
+	-moz-flex-basis: @flex-basis;
+	flex-basis: @flex-basis;
+}
+
+.flex (@flex-grow: 0, @flex-shrink: 1, @flex-basis: auto)
+{
+	-webkit-box-flex: @flex-grow;
+	-moz-box-flex: @flex-grow;
+
+	-webkit-flex: @flex-grow @flex-shrink @flex-basis;
+	-moz-flex: @flex-grow @flex-shrink @flex-basis;
+	-ms-flex: @flex-grow @flex-shrink @flex-basis;
+	flex: @flex-grow @flex-shrink @flex-basis;
+}
+
+.order (@order)
+{
+	-webkit-box-ordinal-group: @order;
+	-moz-box-ordinal-group: @order;
+
+	-ms-flex-order: @order;
+
+	-webkit-order: @order;
+	-moz-order: @order;
+	-ms-order: @order;
+	order: @order;
+}
+
+.align-self (@align-self: stretch)
+{
+	.flex-item-align (@flex-item-align)
+	{
+		-ms-flex-item-align: @flex-item-align;
+	}
+	
+	.align-self- (flex-start)
+	{
+		.flex-item-align (start);
+	}
+	.align-self- (flex-end)
+	{
+		.flex-item-align (end);
+	}
+	.align-self- (space-between)
+	{
+		.flex-item-align (justify);
+	}
+	.align-self- (space-around)
+	{
+		.flex-item-align (distribute);
+	}
+	.align-self- (@align-self)
+	{
+		.flex-item-align (@align-self);
+	}
+
+	.align-self- (@align-self);
+
+	-webkit-align-self: @align-self;
+	-moz-align-self: @align-self;
+	-ms-align-self: @align-self;
+	align-self: @align-self;
+}
+
+.border-radius (@radius: 0)
+{
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0)
+{
+	-webkit-border-top-right-radius: @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius: @bottomleft;
+	-webkit-border-top-left-radius: @topleft;
+
+	-moz-border-radius-topright: @topright;
+	-moz-border-radius-bottomright: @bottomright;
+	-moz-border-radius-bottomleft: @bottomleft;
+	-moz-border-radius-topleft: @topleft;
+
+	border-top-right-radius: @topright;
+	border-bottom-right-radius: @bottomright;
+	border-bottom-left-radius: @bottomleft;
+	border-top-left-radius: @topleft;
+}
+
+.text-shadow (@shadow-style: none)
+{
+	text-shadow+: @shadow-style;
+}
+
+.box-shadow (@shadow-style: none)
+{
+	-webkit-box-shadow+: @shadow-style;
+	-moz-box-shadow+: @shadow-style;
+	box-shadow+: @shadow-style;
+}
+
+.box-sizing (@type: border-box)
+{
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	box-sizing: @type;
+}
+
+.opacity (@opacity: 1) {
+	-webkit-opacity: @opacity;
+	-moz-opacity: @opacity;
+	opacity: @opacity;
+}
+
+.linear-gradient (@gradient-style: none)
+{
+	background: -webkit-linear-gradient(@gradient-style);
+	background: -moz-linear-gradient(@gradient-style);
+	background: -ms-linear-gradient(@gradient-style);
+	background: -o-linear-gradient(@gradient-style);
+}
+
+.radial-gradient (@gradient-style: none)
+{
+	background: -webkit-radial-gradient(@gradient-style);
+	background: -moz-radial-gradient(@gradient-style);
+	background: -ms-radial-gradient(@gradient-style);
+	background: -o-radial-gradient(@gradient-style);
+}
+
+.transform (@transform)
+{
+	-webkit-transform+: @transform;
+	-moz-transform+: @transform;
+	-ms-transform+: @transform;
+	-o-transform+: @transform;
+	transform+: @transform;
+}
+
+.transition (@transition)
+{
+	-webkit-transition+: @transition;
+	-moz-transition+: @transition;
+	-ms-transition+: @transition;
+	-o-transition+: @transition;
+	transition+: @transition;
+}
+
+.user-select (@select-type)
+{
+	-webkit-user-select: @select-type;
+	-khtml-user-select: @select-type;
+	-moz-user-select: @select-type;
+	-ms-user-select: @select-type;
+	user-select: @select-type;
+}
+
+.selection (@background: grey, @color: inherit)
+{
+	&::-moz-selection
+	{
+		color: @color;
+		background: @background;
+	}
+	
+	&::selection
+	{
+		color: @color;
+		background: @background;
+	}
+}
