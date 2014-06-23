@@ -5,21 +5,10 @@ import json
 from xml.dom import minidom
 import logging
 from formatlrc import FormatLRC
+from reader import UrlReader
 log = logging.getLogger("lrclib")
 log.setLevel(logging.DEBUG)
 
-class UrlReader(object):
-	def __init__(self):
-		self._cj = cookielib.CookieJar()
-		self._opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self._cj))
-	
-	def read(self, url):
-		req = self._opener.open(url)
-		return req.read()
-	
-	def __call__(self, url):
-		return self.read(url)
-	
 class BaiduAPI(object):
 	def __init__(self):
 		self._reader = UrlReader()
@@ -36,11 +25,10 @@ class BaiduAPI(object):
 		content = json.loads(self._reader(url))
 		log.debug(content)
 		lrc_uri = content[u'data'][u'songList'][0][u'lrcLink']
-		mp3_url = content[u'data'][u'songList'][0][u'showLink']
 		lrc_url = 'http://music.baidu.com' + lrc_uri
 		lrc = self._reader(lrc_url)
 		log.debug(lrc)
-		return lrc, mp3_url
+		return lrc
 
 class LrcLib(object):
 	
@@ -49,9 +37,14 @@ class LrcLib(object):
 			"baidu": BaiduAPI()
 		}
 	def getlrc(self, song_name, artist):
-		lrc, mp3_url = "", ""
+		lrc = ""
 		for key, api in self._apis.items():
-			lrc, mp3_url = api.getlrc(song_name, artist)
+			try:
+				lrc = api.getlrc(song_name, artist)
+			except:
+				pass
+			if lrc:
+				break
 		log.debug(lrc)
-		return dict(lrc = FormatLRC(lrc), mp3_url = mp3_url)
+		return FormatLRC(lrc) if lrc else ""
 
