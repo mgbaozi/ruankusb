@@ -3,11 +3,16 @@ from base.session_tools import SessionTools
 from lib.lrclib import LrcLib
 from lib.songinfo import SongInfo
 import json
+import re
 
 
 import logging
 log = logging.getLogger("index")
 log.setLevel(logging.DEBUG)
+rm_regex = r"/(\([^\)]*\))|(\[[^\]]*\])|(（[^）]*）)|(【[^】]*】)|((-|\/|&).*)/g"
+def simplify(string):
+	return re.sub(rm_regex, "", string)
+
 class IndexHandler(tornado.web.RequestHandler):
 
 	def __init__(self, application, request, **kwargs):
@@ -36,7 +41,7 @@ class IndexHandler(tornado.web.RequestHandler):
 				share_url = request.get("shareUrl"),
 				album_img = request.get("albumImgUrl"),
 				start_time = request.get("startTime"))
-		lrc = self._lrclib.getlrc(song["title"], song["artist"])	
+		lrc = self._lrclib.getlrc(simplify(song["title"]), simplify(song["artist"]))	
 		info_res = self._info.get_info(song["share_url"])
 		if not info_res:
 			return self.on_error()
