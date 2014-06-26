@@ -1,6 +1,6 @@
 #coding: utf-8
 import tornado.web
-from base.session_tools import SessionTools
+from basehandler import BaseHandler
 from lib.lrclib import LrcLib
 from lib.songinfo import SongInfo
 import json
@@ -14,15 +14,14 @@ rm_regex = r"/(\([^\)]*\))|(\[[^\]]*\])|(（[^）]*）)|(【[^】]*】)|((-|\/|&
 def simplify(string):
   return re.sub(rm_regex, "", string)
 
-class IndexHandler(tornado.web.RequestHandler):
+class IndexHandler(BaseHandler):
 
   def __init__(self, application, request, **kwargs):
-    self.session = SessionTools()
     self._lrclib = LrcLib()
     self._info = SongInfo()
     super(IndexHandler, self).__init__(application, request, **kwargs)
   def get(self):
-    user_id = self.session.logged_user(self.get_cookie)
+    user_id = self.current_user
     log.debug("user_id is {0}".format(user_id))
     # if not user_id:
       # return self.render('login.html')
@@ -35,13 +34,15 @@ class IndexHandler(tornado.web.RequestHandler):
 
   def post(self):
     request = json.loads(self.request.body)
-    song = dict(sid = request.get("songId"),
-        artist = request.get("artist"),
-        title = request.get("title"),
-        channel = request.get("channel"),
-        share_url = request.get("shareUrl"),
-        album_img = request.get("albumImgUrl"),
-        start_time = request.get("startTime"))
+    song = dict(
+                  sid = request.get("songId"),
+                  artist = request.get("artist"),
+                  title = request.get("title"),
+                  channel = request.get("channel"),
+                  share_url = request.get("shareUrl"),
+                  album_img = request.get("albumImgUrl"),
+                  start_time = request.get("startTime")
+              )
     lrc = self._lrclib.getlrc(simplify(song["title"]), simplify(song["artist"]))  
     info_res = self._info.get_info(song["share_url"])
     if not info_res:

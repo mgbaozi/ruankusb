@@ -20,7 +20,9 @@ class Application(tornado.web.Application):
     handlers = views
     settings = {
       'template_path': 'templates',
-      'static_path': 'static'
+      'static_path': 'static',
+      'login_url': '/login',
+      'cookie_secret': 'T0yEnsiyRViAZ2/8KDhWdpiqkNix50qmh//GYJhuwas='
     }
     tornado.web.Application.__init__(self, handlers, debug = True, **settings)
 
