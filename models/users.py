@@ -1,3 +1,4 @@
+#coding: utf-8
 from modelbase import ModelBase
 
 class UserModel(ModelBase):

@@ -11,6 +11,7 @@ log.setLevel(logging.DEBUG)
 class UserHandler(BaseHandler):
   def __init__(self, application, request, **kwargs):
     self._users = UserModel()
+    super(UserHandler, self).__init__(application, request, **kwargs)
 
   def get(self):
     return self.render('login.html')
