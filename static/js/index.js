@@ -2,9 +2,14 @@
 
 	document.addEventListener('DOMContentLoaded', function (event) {
 
+		// DOM元素缓存
+
 		var wrap = document.getElementById('wrap');
 
-		var songInfo = document.getElementById('song-info');
+		var popupBox = document.getElementById('popup');
+		var popupContent = document.getElementById('popup-content');
+
+		var songInfoBox = document.getElementById('song-info');
 		var title = document.getElementById('title');
 		var artist = document.getElementById('artist');
 		var album = document.getElementById('album');
@@ -22,11 +27,21 @@
 		var selectArea = document.getElementById('select-area');
 
 		var shareBox = document.getElementById('share');
+		var shareButtons = {
+			'weibo': document.getElementById('share-weibo'),
+			'renren': document.getElementById('share-renren'),
+			'douban': document.getElementById('share-douban'),
+		};
+		var copyToClipboard = document.getElementById('share-clipboard');
+
+		// 当前播放的歌曲信息
+
+		var songInfo = {};
 
 
 		// 自动根据窗口大小调整wrap的高度
 
-		var autoSize = function (event) {
+		function autoSize(event) {
 
 			wrap.style.height = window.innerHeight + 'px';
 		};
@@ -37,7 +52,7 @@
 
 		// 歌词分享框控制
 
-		var foldShareBox = function (event) {
+		function foldShareBox(event) {
 
 			wrap.removeEventListener('click', foldShareBox);
 
@@ -48,6 +63,58 @@
 
 		shareBox.addEventListener('click', function (event) {
 
+			event.stopPropagation();
+		});
+
+
+		// 歌词分享按钮控制
+
+		for (var target in shareButtons) {
+
+			(function (target) {
+
+				shareButtons[target].addEventListener('click', function (event) {
+
+					event.preventDefault();
+					event.stopPropagation();
+
+					Share[target]({
+						url: 'http://douban.fm/?start=' + songInfo.startToken,
+						title: songInfo.title,
+						artist: songInfo.artist,
+						content: lyricsBox.selectedContent,
+						imageUrl: songInfo.albumImgUrl,
+						callback: foldShareBox
+					});
+				});
+
+			})(target);
+		}
+
+
+		// 复制歌词到剪贴板
+
+		ZeroClipboard.config({ swfPath: 'js/zero-clipboard/zero-clipboard.swf' });
+
+		new ZeroClipboard(copyToClipboard).on('copy', function (event) {
+
+			event.clipboardData.setData('text/plain', lyricsBox.selectedContent.join('\n'));
+
+			popupContent.innerHTML = '歌词已复制到剪贴板';
+			popupBox.classList.remove('hidden');
+
+			setTimeout(function () {
+
+				popupBox.classList.add('hidden');
+
+			}, 1300);
+
+			setTimeout(foldShareBox, 400);
+		});
+
+		copyToClipboard.addEventListener('click', function (event) {
+
+			event.preventDefault();
 			event.stopPropagation();
 		});
 
@@ -65,8 +132,6 @@
 			selectArea: selectArea,
 			onselect: function (event) {
 
-				console.log(event.content);
-
 				setTimeout(function () {
 
 					shareBox.classList.remove('hidden');
@@ -76,19 +141,6 @@
 				}, 500);
 			}
 		});
-
-		var mousewheel = function (event) {
-
-			event.preventDefault();
-			event.stopPropagation();
-
-			var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-
-			lyricsBox.setOffset(lyricsBox.getOffset() + delta * 400);
-		};
-
-		lyricsWrap.addEventListener('DOMMouseScroll', mousewheel);
-		lyricsWrap.addEventListener('mousewheel', mousewheel);
 
 
 		// Ajax请求处理
@@ -123,34 +175,36 @@
 
 			if (fullInfo && fullInfo.code === 0) {
 
-				var updateSongInfo = function (event) {
+				// 更新歌曲信息显示
 
-					songInfo.removeEventListener('transitionend', updateSongInfo);
+				songInfo = fullInfo.songInfo;
 
-					title.innerHTML = fullInfo.songInfo.title;
-					artist.innerHTML = fullInfo.songInfo.artist;
-					album.innerHTML = fullInfo.songInfo.album;
-					year.innerHTML = fullInfo.songInfo.releaseYear;
-					title.href = 'http://music.douban.com' + fullInfo.songInfo.albumUrl;
-					artist.href = 'http://music.douban.com' + fullInfo.songInfo.albumUrl;
-					album.href = 'http://music.douban.com' + fullInfo.songInfo.albumUrl;
+				function updateSongInfo(event) {
 
-					songInfo.classList.remove('hidden');
+					songInfoBox.removeEventListener('transitionend', updateSongInfo);
+
+					title.innerHTML = songInfo.title;
+					artist.innerHTML = songInfo.artist;
+					album.innerHTML = songInfo.album;
+					year.innerHTML = songInfo.releaseYear;
+					title.href = 'http://music.douban.com' + songInfo.albumUrl;
+					artist.href = 'http://music.douban.com' + songInfo.albumUrl;
+					album.href = 'http://music.douban.com' + songInfo.albumUrl;
+
+					songInfoBox.classList.remove('hidden');
 				};
 
-				document.title = '豆瓣LRC - ' + fullInfo.songInfo.title;
-
-				if (songInfo.classList.contains('hidden')) {
+				if (songInfoBox.classList.contains('hidden')) {
 
 					updateSongInfo();
 					
 				} else {
 
-					songInfo.classList.add('hidden');
-					songInfo.addEventListener('transitionend', updateSongInfo);
+					songInfoBox.classList.add('hidden');
+					songInfoBox.addEventListener('transitionend', updateSongInfo);
 				}
 
-				image.src = fullInfo.songInfo.albumImgUrl;
+				image.src = songInfo.albumImgUrl;
 				imageWrap.classList.remove('hidden');
 
 				setTimeout(function () {
@@ -160,6 +214,12 @@
 					imageWrap.classList.add('hidden');
 
 				}, 2000);
+
+				// 更新窗口标题
+
+				document.title = '豆瓣LRC - ' + songInfo.title;
+
+				// 更新歌词
 
 				var lyrics = fullInfo.lyricsInfo.lyrics || [];
 
