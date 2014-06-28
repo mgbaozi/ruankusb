@@ -4,13 +4,20 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link href="css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="css/index.css" rel="stylesheet" type="text/css" />
+	<script src="js/zero-clipboard/zero-clipboard.js" type="text/javascript"></script>
 	<script src="js/ajax.js" type="text/javascript"></script>
 	<script src="js/lyrics-box.js" type="text/javascript"></script>
+	<script src="js/share.js" type="text/javascript"></script>
 	<script src="js/index.js" type="text/javascript"></script>
 	<title>豆瓣LRC</title>
 </head>
 <body>
 	<div class="wrap" id="wrap">
+		<div class="popup-layer">
+			<div class="popup hidden" id="popup">
+				<p id="popup-content">歌词已复制到剪贴板</p>
+			</div>
+		</div>
 		<div class="header">
 			<div class="header-wrap">
 				<div class="logo"></div>
@@ -32,10 +39,10 @@
 						<div class="share hidden" id="share">
 							<h3>分享歌词：</h3>
 							<p><!--
-								--><a class="share-weibo" id="share-weibo" href="#" title="分享到新浪微博">&#xE800;</a><!--
-								--><a class="share-renren" id="share-renren" href="#" title="分享到人人网">&#xE801;</a><!--
-								--><a class="share-douban" id="share-douban" href="#" title="分享到豆瓣">&#xE802;</a><!--
-								--><a class="share-clipboard" id="share-clipboard" href="#" title="复制到剪贴板">&#xE806;</a><!--
+								--><a class="share-button share-weibo" id="share-weibo" href="#weibo" title="分享到新浪微博">&#xE800;</a><!--
+								--><a class="share-button share-renren" id="share-renren" href="#renren" title="分享到人人网">&#xE801;</a><!--
+								--><a class="share-button share-douban" id="share-douban" href="#douban" title="分享到豆瓣">&#xE802;</a><!--
+								--><a class="share-button share-clipboard" id="share-clipboard" href="#clipboard" title="复制到剪贴板">&#xE806;</a><!--
 							--></p>
 						</div>
 					</div>
