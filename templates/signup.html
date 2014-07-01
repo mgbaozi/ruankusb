@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <script>
+    function confirm_passwd() {
+      var passwd = document.getElementById("passwd").value,
+          confirm_passwd = document.getElementById("confirm").value,
+          result = (passwd==confirm_passwd);
+      return result;
+    }
+  </script>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link href="css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="css/login.css" rel="stylesheet" type="text/css" />
@@ -9,9 +17,10 @@
 <body>
 	<div class="wrap" id="wrap">
 		<div class="login-wrap">
-			<form class="login" action="" method="post">
+			<form class="login" onsubmit="return confirm_passwd()" action="" method="post">
 				<p><input type="text" class="textbox" name="usrn" value="" placeholder="用户名" /></p>
-				<p><input type="password" class="textbox" name="pswd" value="" placeholder="密码" /></p>
+				<p><input id="passwd" type="password" class="textbox" name="pswd" value="" placeholder="密码" /></p>
+				<p><input id="confirm" type="password" class="textbox" name="pswd" value="" placeholder="确认密码" /></p>
 				<p><input type="submit" class="button" value="注册" /></p>
 			</form>
 		</div>
