@@ -32,7 +32,7 @@ class UserHandler(BaseHandler):
                                                     u"error": 2,
                                                     u"content": u"用户名或密码错误"
                                                   }, redirect = '/login')
-    self.set_current_user(account)
+    self.set_current_user(user_id)
     return self.render('result.html', message = {
                                                   u"error": 0,
                                                   u"content": u"登录成功"

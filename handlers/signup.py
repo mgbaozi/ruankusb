@@ -31,7 +31,7 @@ class SignupHandler(BaseHandler):
                                                     u"content": u"未知错误"
                                                   }, redirect = '/signup')
     user_id = self._users.login(account, passwd)
-    self.set_current_user(account)
+    self.set_current_user(user_id)
     return self.render('result.html', message = {
                                                   u"error": 0,
                                                   u"content": u"注册成功" 
