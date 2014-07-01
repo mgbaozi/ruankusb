@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Message</title>
+</head>
+<body>
+	<p>{{ message[u"content"] }}</p>
+	<p id="count_down"></p>
+	<script>
+    var time = 3;
+		setInterval(function(){
+			document.getElementById('count_down').innerHTML = time + "秒后将会自动跳转..."
+      time -= 1;
+			if(time == 0){
+        location.href = '{{ redirect }}';
+			}
+		},1000);
+	</script>
+</body>
+</html>
