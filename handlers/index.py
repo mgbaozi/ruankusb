@@ -3,7 +3,7 @@ import tornado.web
 from basehandler import BaseHandler
 from lib.lrclib import LrcLib
 from lib.songinfo import SongInfo
-from models import MusicModel
+from models import MusicModel, UserModel
 import json
 import re
 
@@ -21,13 +21,20 @@ class IndexHandler(BaseHandler):
     self._lrclib = LrcLib()
     self._info = SongInfo()
     self._music = MusicModel()
+    self._users = UserModel()
     super(IndexHandler, self).__init__(application, request, **kwargs)
   def get(self):
     user_id = self.current_user
     log.debug("user_id is {0}".format(user_id))
     # if not user_id:
       # return self.render('login.html')
-    return self.render('index.html', domain=self.request.full_url())
+    account = ""
+    if user_id:
+      user = self._users.get_one(user_id)
+      log.debug(user)
+      if user:
+        account = user["account"]
+    return self.render('index.html', current_user = account, domain=self.request.full_url())
 
   def on_error(self):
     return self.write(json.dumps({

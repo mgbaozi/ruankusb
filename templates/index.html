@@ -20,7 +20,16 @@
 		</div>
 		<div class="header">
 			<div class="header-wrap">
-        <div><p style=“text-align:right”><a href=“login”>登录</a></p></div>
+        {% if current_user %}
+        <div>
+          <p style="text-align:right">
+            <a href="#">Hi: {{current_user}}</a>
+            <a href="#">收藏</a>
+          </p>
+        </div>
+        {% else %}
+        <div><p style="text-align:right"><a href="login">登录</a> <a href="signup">注册</a></p></div>
+        {% end %}
 				<div class="logo"></div>
 			</div>
 		</div>
