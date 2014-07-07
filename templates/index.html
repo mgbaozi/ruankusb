@@ -4,11 +4,13 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link href="css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="css/index.css" rel="stylesheet" type="text/css" />
+  <link href="css/favorite.css" rel="stylesheet" type="text/css" />
 	<script src="js/zero-clipboard/zero-clipboard.js" type="text/javascript"></script>
 	<script src="js/ajax.js" type="text/javascript"></script>
 	<script src="js/lyrics-box.js" type="text/javascript"></script>
 	<script src="js/share.js" type="text/javascript"></script>
 	<script src="js/index.js" type="text/javascript"></script>
+  <script src="js/favorite.js" type="text/javascript"></script>
 	<title>豆瓣LRC</title>
 </head>
 <body>
@@ -21,11 +23,13 @@
 		<div class="header">
 			<div class="header-wrap">
         {% if current_user %}
-        <div>
-          <p style="text-align:right">
-            <a href="#">Hi: {{current_user}}</a>
-            <a href="#">收藏</a>
-          </p>
+        <div class="user_box">
+          Hi: <a id="user" class="user" href="#">{{current_user}}</a>
+          <div class="favorite" id="favorite">
+            <ul>
+              <li>歌名占位 - 歌手占位</li>
+            </ul>
+          </div>
         </div>
         {% else %}
         <div><p style="text-align:right"><a href="login">登录</a> <a href="signup">注册</a></p></div>

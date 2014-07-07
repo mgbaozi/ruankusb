@@ -80,7 +80,8 @@ class IndexHandler(BaseHandler):
                     "SongId": song_info["sid"],
                     "ssid": song_info["ssid"],
                     "startToken": song_info["start_token"],
-                    "title": song_info["title"]
+                    "title": song_info["title"],
+                    "shareUrl": song["share_url"]
                   }
     response = json.dumps({
                 "code": 0,

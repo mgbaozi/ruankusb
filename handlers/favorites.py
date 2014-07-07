@@ -1,19 +1,25 @@
 #coding: utf-8
 import tornado.web
 from basehandler import BaseHandler
-from models import FavoriteModel
+from models import FavoriteModel, MusicModel
 import json
 
 class FavoriteHandler(BaseHandler):
   def __init__(self, application, request, **kwargs):
     self._favorites = FavoriteModel()
+    self._music = MusicModel()
     super(FavoriteHandler, self).__init__(application, request, **kwargs)
 
   @tornado.web.authenticated
   def get(self):
     user_id = self.current_user
     favorites = self._favorites.get_all(user_id)
-    return self.write(json.dumps(favorites))
+    result = []
+    for favorite in favorites:
+      lrc, song_info = self._music.get_rep(favorite["song_id"])
+      if song_info:
+        result.append(dict(songId = favorite["song_id"], songInfo = song_info))
+    return self.write(json.dumps(result))
 
   @tornado.web.authenticated
   def post(self):
@@ -41,6 +47,4 @@ class FavoriteHandler(BaseHandler):
                                   u"error": 1,
                                   u"content": u"权限不足"
                                 }))
-
-
 
