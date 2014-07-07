@@ -14,8 +14,5 @@ class SongHandler(BaseHandler):
     lrc, song_info = self._songs.get_rep(song_id)
     if not song_info:
       return self.write(json.dumps({u"error": 1}))
-    return self.write(json.dumps({
-                                  u"error": 0,
-                                  u"songInfo": song_info,
-                                }))
+    return self.render('redirect.html', url = song_info["shareUrl"])
 

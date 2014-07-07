@@ -1,4 +1,6 @@
-﻿@import "common";
+// out: index.css﻿
+
+@import "common";
 
 body
 {
@@ -55,16 +57,54 @@ body
 				height: 50px;
 				width: 950px;
 				margin: 0 auto;
-				padding: 15px;
+				padding: 10px;
 
 				.logo
 				{
 					display: none;
 					width: 140px;
 					height: 50px;
-					margin: 0 30px;
+					margin: 5px 35px;
 					background: url(../img/logo.png) no-repeat;
 				}
+
+        .user-box
+        {
+          float: right;
+
+          &:hover
+          {
+            ul.favorite
+            {
+              display: block;
+            }
+          }
+
+          p
+          {
+            font-size: 13px;
+            text-align: right;
+            color: #666;
+          }
+
+          ul.favorite
+          {
+            display: none;
+            position: relative;
+            z-index: 9999;
+            margin: 10px 0;
+            padding: 5px;
+            .border-radius (2px);
+            .box-shadow (0 0 3px rgba(0, 0, 0, 0.7));
+            background: #FFF;
+
+            li
+            {
+              margin: 7px;
+              font-size: 13px;
+            }
+          }
+        }
 			}
 		}
 
@@ -310,7 +350,7 @@ body
 								a
 								{
 									.transition (color 0.35s);
-									
+
 									&:hover
 									{
 										color: #C2ECD1;
@@ -428,6 +468,14 @@ body
 								}
 							}
 						}
+
+            p.favorite
+            {
+              margin: 230px 20px 0;
+              font-size: 13px;
+              text-align: right;
+              color: #666;
+            }
 					}
 				}
 			}

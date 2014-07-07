@@ -34,6 +34,11 @@
 		};
 		var copyToClipboard = document.getElementById('share-clipboard');
 
+
+    var fovoriteButton = document.getElementById('favorite-button');
+    var userBox = document.getElementById('user-box');
+    var favoriteList = document.getElementById('favorite');
+
 		// 当前播放的歌曲信息
 
 		var songInfo = {};
@@ -144,7 +149,7 @@
 
 
 		// Ajax请求处理
-		
+
 		var requestLyrics = function (fmInfo, callback) {
 
 			Ajax.post({
@@ -197,7 +202,7 @@
 				if (songInfoBox.classList.contains('hidden')) {
 
 					updateSongInfo();
-					
+
 				} else {
 
 					songInfoBox.classList.add('hidden');
@@ -270,7 +275,7 @@
 			};
 
 			console.log(fmInfo);
-			
+
 			requestLyrics(fmInfo, function (fullInfo) {
 
 				console.log(fullInfo);
@@ -278,6 +283,67 @@
 				refresh(fullInfo);
 			});
 		});
+
+
+    fovoriteButton.addEventListener('click', function (event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      Ajax.post({
+
+        url: 'favorite',
+        data: { song_id: songInfo.songId },
+        requestType: 'urlencoded',
+        responseType: 'json'
+      });
+    });
+
+    userBox.addEventListener('mouseenter', function (event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      Ajax.get({
+
+        url: 'favorite',
+        responseType: 'json',
+
+        onsuccess: function (event) {
+
+          var songList = event.response;
+
+          favoriteList.innerHTML = '';
+
+          songList.forEach(function (song) {
+
+            var title = song.songInfo.title;
+            var artist = song.songInfo.artist;
+            var shareUrl = song.songInfo.shareUrl;
+
+            favoriteList.innerHTML +=
+              '<li><a href="' + shareUrl + '" rel="noreferrer">' + title + '</a> - ' + artist + '</li>';
+
+          });
+
+          var list = document.querySelectorAll('#favorite li a');
+
+          /*for (var index = 0; index < list.length; index++) {
+
+            var link = list.item(index);
+
+            link.addEventListener('click', function (event) {
+
+              event.preventDefault();
+              event.stopPropagation();
+
+              window.open(link.href, 'DoubanFM');
+            });
+
+          }*/
+        }
+      });
+    });
 	});
 
 })();

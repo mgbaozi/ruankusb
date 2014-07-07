@@ -1,8 +1,8 @@
-.user_box {
+/*.user-box {
   float: right;
   padding-right: 20px;
 }
-.user_box:hover .favorite {
+.user-box:hover .favorite {
   display: block;
 }
 .favorite {
@@ -11,3 +11,4 @@
   width: 200px;
   background: #ffe;
 }
+*/

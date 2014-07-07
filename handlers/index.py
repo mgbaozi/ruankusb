@@ -77,7 +77,7 @@ class IndexHandler(BaseHandler):
                     "mp3Url": song_info["url"],
                     "rating": song_info["rating_avg"],
                     "releaseYear": song_info["public_time"],
-                    "SongId": song_info["sid"],
+                    "songId": song_info["sid"],
                     "ssid": song_info["ssid"],
                     "startToken": song_info["start_token"],
                     "title": song_info["title"],

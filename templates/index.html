@@ -23,13 +23,16 @@
 		<div class="header">
 			<div class="header-wrap">
         {% if current_user %}
-        <div class="user_box">
-          Hi: <a id="user" class="user" href="#">{{current_user}}</a>
-          <div class="favorite" id="favorite">
-            <ul>
-              <li><a href="#">歌名占位</a> - 歌手占位</li>
-            </ul>
-          </div>
+        <div class="user-box" id="user-box">
+          <p>Hi: <a id="user" class="user" href="#">{{current_user}}</a></p>
+          <ul class="favorite" id="favorite">
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+						<li><a href="#">歌名占位</a> - 歌手占位</li>
+          </ul>
         </div>
         {% else %}
         <div><p style="text-align:right"><a href="login">登录</a> <a href="signup">注册</a></p></div>
@@ -59,6 +62,9 @@
 								--><a class="share-button share-clipboard" id="share-clipboard" href="#clipboard" title="复制到剪贴板">&#xE806;</a><!--
 							--></p>
 						</div>
+						<p class="favorite">
+							<a href="#" id="favorite-button">收藏</a>
+						</p>
 					</div>
 				</div>
 				<div class="lyrics" id="lyrics">
